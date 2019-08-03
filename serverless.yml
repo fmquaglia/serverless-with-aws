@@ -3,17 +3,28 @@ service: serverless
 provider:
   name: aws
   runtime: nodejs8.10
-  profile: femasters
   region: us-west-1
   stage: dev
 
 plugins:
   - serverless-offline
 
-functions:  
+functions:
+  weather:
+    handler: src/api/weather.handler
+    events:
+      - http: GET /weather
+
   todos:
     handler: src/api/todos.handler
-    
+    events:
+      - http: GET /todos
+
   todo:
     handler: src/api/todo.handler
-    
+    events:
+      - http: GET /todos/{id}
+        request:
+          parameters:
+            - id: true
+
