@@ -23,8 +23,10 @@ functions:
   todo:
     handler: src/api/todo.handler
     events:
-      - http: GET /todos/{id}
-        request:
-          parameters:
-            - id: true
-
+      - http:
+          path: todos/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
